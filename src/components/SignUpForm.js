@@ -1,6 +1,5 @@
 import {useState} from "react";
-import axiosInstance from "../../../../../IdeaProjects/eco/frontend/src/axios";
-import {Button, Grid, makeStyles, MenuItem, TextField} from "@material-ui/core";
+import {Button, Grid, makeStyles, MenuItem, TextField} from "@mui/material";
 
 const initialUserValues = {
     firstName: '',
@@ -18,11 +17,7 @@ const userTypes = [
     {
         value: 2,
         label: "Teacher",
-    },
-    {
-        value: 3,
-        label: "Administrator",
-    },
+    }
 ];
 
 const useStyles = makeStyles(theme => ({
@@ -52,7 +47,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const SignupForm = () => {
+const SignUpForm = () => {
 
     const [userValues, setUserValues] = useState(initialUserValues);
     const [passwordConfirmation, setPasswordConfirmation] = useState('');
@@ -144,21 +139,6 @@ const SignupForm = () => {
         if(validateForm()) {
             console.log("validate form");
             console.log(userValues)
-
-            // make post request
-            axiosInstance.post(`auth/register/`, {
-                email: userValues.email,
-                password: userValues.password,
-                first_name: userValues.firstName,
-                last_name: userValues.lastName,
-                user_type: userValues.userType,
-
-            }).then((res) => {
-                console.log(res);
-                console.log(res.data);
-            }).catch ( e => {
-                console.log(e.response.data)
-            })
         } else {
             console.log("! validate form");
 
@@ -351,4 +331,4 @@ const SignupForm = () => {
 }
 
 
-export default SignupForm
+export default SignUpForm

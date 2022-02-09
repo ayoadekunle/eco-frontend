@@ -1,8 +1,14 @@
+import logo from '../images/teacher-regular.png'
+import './TeacherLogin.css'
+import LoginCard from "../components/LoginCard";
+
+
 const TeacherLogin = () => {
     return (
-      <>
-          <h2>Teacher Login</h2>
-      </>
+      <div className="page">
+          <img src={logo} alt="logo" className={"logo"}/>
+          <LoginCard />
+      </div>
     );
 }
 

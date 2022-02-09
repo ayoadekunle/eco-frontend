@@ -1,0 +1,53 @@
+.logo-horizontal {
+    width: 140px;
+    height: auto;
+}
+
+.nav-container {
+    padding: 20px 60px 20px 60px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+}
+
+.student-button {
+    font-family: 'Red Hat Text', serif;
+    font-size: 15px;
+    font-weight: bolder;
+    background-color: #f7f7f7;
+    width: 120px;
+    height: 50px;
+    border: solid #f7f7f7;
+    border-radius: 5px;
+    color: #7dc241;
+    margin: 0 5px 0 5px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.student-button:hover {
+    border: solid #7dc241;
+}
+
+.teacher-button {
+    font-family: 'Red Hat Text', serif;
+    font-size: 15px;
+    font-weight: bolder;
+    background-color: #f7f7f7;
+    width: 120px;
+    height: 50px;
+    border: solid #f7f7f7;
+    border-radius: 5px;
+    color: #fbb03b;
+    margin: 0 5px 0 5px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.teacher-button:hover {
+    border: solid #fbb03b;
+}
