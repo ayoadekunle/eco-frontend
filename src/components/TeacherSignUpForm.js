@@ -1,44 +1,39 @@
 import {useState} from "react";
-import {Button, Grid, makeStyles, MenuItem, TextField} from "@mui/material";
+import {Button, Grid, TextField} from "@mui/material";
+import { makeStyles } from "@mui/styles";
+
 
 const initialUserValues = {
     firstName: '',
     lastName: '',
     email: '',
-    userType: 1,
     password: '',
 }
 
-const userTypes = [
-    {
-        value: 1,
-        label: "Student",
-    },
-    {
-        value: 2,
-        label: "Teacher",
-    }
-];
-
 const useStyles = makeStyles(theme => ({
     textField: {
-        width: "80%",
+        width: "100%",
         '& label.Mui-focused': {
-            color: '#60992d',
+            color: "#fbb03b",
         },
-        '& .MuiInput-underline:after': {
-            borderBottomColor: "#60992d",
-        },
+        '& .MuiOutlinedInput-root': {
+              '&.Mui-focused fieldset': {
+                borderColor: "#fbb03b",
+              },
+            },
+        fontFamily: "Heiti SC",
     },
     button: {
         color: "#f7f7f7",
-        backgroundColor: "#60992d",
+        backgroundColor: "#fbb03b",
         cursor: "pointer",
         margin: "20px auto",
-        width: "60%",
-        borderRadius: "20px",
+        width: "80%",
+        height: "50px",
+        borderRadius: "5px",
+        fontFamily: "Heiti SC",
         "&:hover": {
-            backgroundColor: "#46494c",
+            backgroundColor: "#da9933",
         }
     },
     formItem: {
@@ -46,19 +41,12 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-
-const SignUpForm = () => {
+const TeacherSignUpForm = () => {
 
     const [userValues, setUserValues] = useState(initialUserValues);
     const [passwordConfirmation, setPasswordConfirmation] = useState('');
 
     const classes = useStyles();
-
-    const [userType, setUserType] = useState(1);
-    const handleUserTypeChange = (e) => {
-        setUserType(e.target.value);
-        handleChange(e, 'user_type');
-    }
 
     const handleChange = (e, type) => {
         if (type === 'first_name') {
@@ -72,10 +60,6 @@ const SignUpForm = () => {
         } else if (type === 'email') {
             setUserValues (prevState => {
                 return { ...prevState, email: e.target.value}
-            });
-        } else if (type === 'user_type') {
-            setUserValues (prevState => {
-                return { ...prevState, userType: e.target.value}
             });
         } else if (type === 'password') {
             setUserValues ( prevState => {
@@ -117,7 +101,7 @@ const SignUpForm = () => {
             }
         }
 
-        // Validate password: must be at least than 8 characters long.
+        // Validate password: must be at least 8 characters long.
         if (userValues.password.length < 8) {
             setPasswordTag(renderPassword('invalid'))
             validate = false
@@ -148,9 +132,8 @@ const SignUpForm = () => {
     const renderEmail = (type, errorMessage) => {
         if (type === 'valid') {
             return (
-                <TextField variant="standard"
+                <TextField variant="outlined"
                            label="Email Address"
-                           size="small"
                            className={classes.textField}
                            onChange={e => handleChange(e, 'email')}
                            required
@@ -158,9 +141,8 @@ const SignUpForm = () => {
             )
         } else {
             return (
-                <TextField variant="standard"
+                <TextField variant="outlined"
                            label="Email Address"
-                           size="small"
                            className={classes.textField}
                            onChange={e => handleChange(e, 'email')}
                            required
@@ -175,9 +157,8 @@ const SignUpForm = () => {
     const renderFirstName = (type, errorMessage) => {
         if (type === 'valid') {
             return (
-                <TextField variant="standard"
+                <TextField variant="outlined"
                                label="First Name"
-                               size="small"
                                className={classes.textField}
                                onChange={e => handleChange(e, 'first_name')}
                                required
@@ -185,9 +166,8 @@ const SignUpForm = () => {
             )
         } else {
             return (
-                <TextField variant="standard"
+                <TextField variant="outlined"
                            label="First Name"
-                           size="small"
                            className={classes.textField}
                            onChange={e => handleChange(e, 'first_name')}
                            required
@@ -202,9 +182,8 @@ const SignUpForm = () => {
     const renderLastName = (type, errorMessage) => {
         if (type === 'valid') {
             return (
-                <TextField variant="standard"
+                <TextField variant="outlined"
                                label="Last Name"
-                               size="small"
                                className={classes.textField}
                                onChange={e => handleChange(e, 'last_name')}
                                required
@@ -212,9 +191,8 @@ const SignUpForm = () => {
             )
         } else {
             return (
-                <TextField variant="standard"
+                <TextField variant="outlined"
                            label="Last Name"
-                           size="small"
                            className={classes.textField}
                            onChange={e => handleChange(e, 'last_name')}
                            required
@@ -229,9 +207,8 @@ const SignUpForm = () => {
     const renderPassword = (type) => {
         if (type === 'valid') {
             return (
-                <TextField variant="standard"
+                <TextField variant="outlined"
                            label="Create Password"
-                           size="small"
                            className={classes.textField}
                            onChange={e => handleChange(e, 'password')}
                            type="password"
@@ -241,9 +218,8 @@ const SignUpForm = () => {
             )
         } else {
             return (
-                <TextField variant="standard"
+                <TextField variant="outlined"
                            label="Create Password"
-                           size="small"
                            className={classes.textField}
                            onChange={e => handleChange(e, 'password')}
                            type="password"
@@ -259,9 +235,8 @@ const SignUpForm = () => {
     const renderConfirm = (type) => {
         if (type === 'valid') {
             return (
-                <TextField variant="standard"
+                <TextField variant="outlined"
                            label="Confirm Password"
-                           size="small"
                            className={classes.textField}
                            type="password"
                            onChange={e => handleChange(e, 'confirm_password')}
@@ -270,9 +245,8 @@ const SignUpForm = () => {
             )
         } else {
             return (
-                <TextField variant="standard"
+                <TextField variant="outlined"
                            label="Create Password"
-                           size="small"
                            className={classes.textField}
                            type="password"
                            onChange={e => handleChange(e, 'confirm_password')}
@@ -298,23 +272,6 @@ const SignUpForm = () => {
                     { emailTag }
                 </Grid>
                 <Grid item xs={12} className={classes.formItem}>
-                    <TextField variant="standard"
-                           select
-                           label="I am a ..."
-                           size="small"
-                           value={userType}
-                           onChange={e => handleUserTypeChange(e)}
-                           className={classes.textField}
-                           required
-                    >
-                        {userTypes.map((option) => (
-                            <MenuItem key={option.value} value={option.value}>
-                                {option.label}
-                            </MenuItem>
-                        ))}
-                    </TextField>
-                </Grid>
-                <Grid item xs={12} className={classes.formItem}>
                     { passwordTag }
                 </Grid>
                 <Grid item xs={12} className={classes.formItem}>
@@ -331,4 +288,4 @@ const SignUpForm = () => {
 }
 
 
-export default SignUpForm
+export default TeacherSignUpForm

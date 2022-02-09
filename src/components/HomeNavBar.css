@@ -26,7 +26,7 @@
     color: #7dc241;
     margin: 0 5px 0 5px;
     cursor: pointer;
-    transition: 0.5s;
+    transition: 0.2s;
 }
 
 .student-button:hover {
@@ -45,7 +45,7 @@
     color: #fbb03b;
     margin: 0 5px 0 5px;
     cursor: pointer;
-    transition: 0.5s;
+    transition: 0.2s;
 }
 
 .teacher-button:hover {

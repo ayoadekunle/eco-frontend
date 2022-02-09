@@ -1,8 +1,16 @@
+import logo from "../images/eco-regular.png";
+import StudentAccessCard from "../components/StudentAccessCard";
+
 const StudentLogin = () => {
     return (
-      <>
-          <h2>Student Login</h2>
-      </>
+      <div className={"page-container"}>
+            <div className="page">
+                <div className={'logo-container'}>
+                  <img src={logo} alt="logo" className={"logo"}/>
+                </div>
+                <StudentAccessCard />
+            </div>
+        </div>
     );
 }
 
