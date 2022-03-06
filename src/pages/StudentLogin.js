@@ -1,14 +1,15 @@
 import logo from "../images/eco-regular.png";
+import "./Login.css";
 import StudentAccessCard from "../components/StudentAccessCard";
 
 const StudentLogin = () => {
     return (
-      <div className={"page-container"}>
-            <div className="page">
+        <div className={"page-container"}>
+            <div className={"page"}>
                 <div className={'logo-container'}>
-                  <img src={logo} alt="logo" className={"logo"}/>
+                    <img src={logo} alt="logo" className={"logo"}/>
                 </div>
-                <StudentAccessCard />
+                <StudentAccessCard/>
             </div>
         </div>
     );

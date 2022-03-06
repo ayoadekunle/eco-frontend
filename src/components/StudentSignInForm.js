@@ -9,6 +9,11 @@ const initialUserValues = {
 }
 
 const useStyles = makeStyles(theme => ({
+    form : {
+        "&:focus": {
+            outline: "none",
+        },
+    },
     textField: {
         width: "100%",
         '& label.Mui-focused': {
@@ -76,7 +81,7 @@ const StudentSignInForm = () => {
         }
 
         // Validate password: must be at least 8 characters long.
-        if (userValues.password.length < 8) {
+        if (userValues.password.length < 0) {
             setPasswordTag(renderPassword('invalid'))
             validate = false
         } else {
@@ -97,6 +102,11 @@ const StudentSignInForm = () => {
         }
     }
 
+    const handleEnterDown = (e) => {
+        if (e.key === 'Enter') {
+            handleSubmit()
+        }
+    }
 
     const renderEmail = (type, errorMessage) => {
         if (type === 'valid') {
@@ -151,7 +161,7 @@ const StudentSignInForm = () => {
     const [passwordTag, setPasswordTag] = useState(() => renderPassword('valid'))
 
     return (
-        <form className="sign-up-form">
+        <form className={classes.form} onKeyDown={handleEnterDown} tabIndex="0">
             <Grid container spacing={2}>
                 <Grid item xs={12} className={classes.formItem}>
                     { emailTag }

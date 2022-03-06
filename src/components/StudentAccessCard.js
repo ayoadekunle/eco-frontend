@@ -6,7 +6,7 @@ import StudentSignUpForm from "./StudentSignUpForm";
 import StudentSignInForm from "./StudentSignInForm";
 
 
-const TeacherAccessCard = () => {
+const StudentAccessCard = () => {
     const SignIn = () => {
         return (
             <Paper className={"card"}>
@@ -22,7 +22,7 @@ const TeacherAccessCard = () => {
 
     const SignUp = () => {
         return (
-            <Paper class={"card"}>
+            <Paper className={"card"}>
                 <h3>Create Student Account</h3>
                 <StudentSignUpForm/>
                 <hr/>
@@ -50,4 +50,4 @@ const TeacherAccessCard = () => {
     )
 }
 
-export default TeacherAccessCard
+export default StudentAccessCard

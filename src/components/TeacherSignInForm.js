@@ -9,17 +9,21 @@ const initialUserValues = {
 }
 
 const useStyles = makeStyles(theme => ({
+    form : {
+        "&:focus": {
+            outline: "none",
+        },
+    },
     textField: {
         width: "100%",
         '& label.Mui-focused': {
             color: "#fbb03b",
         },
         '& .MuiOutlinedInput-root': {
-              '&.Mui-focused fieldset': {
+            '&.Mui-focused fieldset': {
                 borderColor: "#fbb03b",
-              },
             },
-        fontFamily: "Heiti SC",
+        },
     },
     button: {
         color: "#f7f7f7",
@@ -43,17 +47,16 @@ const useStyles = makeStyles(theme => ({
 const TeacherSignInForm = () => {
 
     const classes = useStyles();
-
     const [userValues, setUserValues] = useState(initialUserValues);
 
     const handleChange = (e, type) => {
         if (type === 'email') {
-            setUserValues (prevState => {
-                return { ...prevState, email: e.target.value}
+            setUserValues(prevState => {
+                return {...prevState, email: e.target.value}
             });
         } else if (type === 'password') {
-            setUserValues ( prevState => {
-                return { ...prevState, password: e.target.value}
+            setUserValues(prevState => {
+                return {...prevState, password: e.target.value}
             });
         }
     }
@@ -76,7 +79,7 @@ const TeacherSignInForm = () => {
         }
 
         // Validate password: must be at least 8 characters long.
-        if (userValues.password.length < 8) {
+        if (userValues.password.length <= 0) {
             setPasswordTag(renderPassword('invalid'))
             validate = false
         } else {
@@ -88,15 +91,19 @@ const TeacherSignInForm = () => {
 
 
     const handleSubmit = () => {
-        if(validateForm()) {
+        if (validateForm()) {
             console.log("validate form");
             console.log(userValues)
         } else {
             console.log("! validate form");
-
         }
     }
 
+    const handleEnterDown = (e) => {
+        if (e.key === 'Enter') {
+            handleSubmit()
+        }
+    }
 
     const renderEmail = (type, errorMessage) => {
         if (type === 'valid') {
@@ -151,16 +158,16 @@ const TeacherSignInForm = () => {
     const [passwordTag, setPasswordTag] = useState(() => renderPassword('valid'))
 
     return (
-        <form className="sign-up-form">
+        <form className={classes.form} onKeyDown={handleEnterDown} tabIndex="0">
             <Grid container spacing={2}>
                 <Grid item xs={12} className={classes.formItem}>
-                    { emailTag }
+                    {emailTag}
                 </Grid>
                 <Grid item xs={12} className={classes.formItem}>
-                    { passwordTag }
+                    {passwordTag}
                 </Grid>
                 <Grid item xs={12} className={classes.formItem}>
-                    <Button className={classes.button} onClick = {handleSubmit}>
+                    <Button className={classes.button} onClick={handleSubmit} >
                         Log In
                     </Button>
                 </Grid>

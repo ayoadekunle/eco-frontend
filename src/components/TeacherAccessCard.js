@@ -22,7 +22,7 @@ const TeacherAccessCard = () => {
 
     const SignUp = () => {
         return (
-            <Paper class={"card"}>
+            <Paper className={"card"}>
                 <h3>Create Teacher Account</h3>
                 <TeacherSignUpForm/>
                 <hr/>

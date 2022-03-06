@@ -1,9 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="745c17e4-6731-46c6-8c75-9037187d9c5f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/frontend.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/HomeNavBar.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HomeNavBar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StudentAccessCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudentAccessCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StudentSignInForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudentSignInForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StudentSignUpForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudentSignUpForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TeacherAccessCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TeacherAccessCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TeacherSignInForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TeacherSignInForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TeacherSignUpForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TeacherSignUpForm.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/images/admin-horizontal.svg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/images/admin-regular.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/StudentLogin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/StudentLogin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/TeacherLogin.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Login.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/TeacherLogin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/TeacherLogin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +47,12 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="yarn" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -36,7 +64,27 @@
       <option name="presentableId" value="Default" />
       <updated>1645041414413</updated>
       <workItem from="1645041417074" duration="11000" />
+      <workItem from="1645107255014" duration="701000" />
+      <workItem from="1645388514819" duration="16148000" />
+      <workItem from="1646139656864" duration="108000" />
+      <workItem from="1646156098599" duration="2662000" />
+      <workItem from="1646237082748" duration="486000" />
+      <workItem from="1646607199621" duration="795000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

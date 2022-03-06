@@ -9,7 +9,7 @@ import Home from "./pages/Home";
 const theme = createTheme({
     typography: {
         allVariants: {
-            fontFamily: `"Heiti SC" serif`,
+            fontFamily: `"Heiti SC", serif`,
         }
     }
 })
@@ -27,9 +27,7 @@ function App() {
                 </BrowserRouter>
             </div>
         </ThemeProvider>
-
     );
 }
 
 export default App;
-                               

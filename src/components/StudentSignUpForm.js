@@ -11,6 +11,11 @@ const initialUserValues = {
 }
 
 const useStyles = makeStyles(theme => ({
+    form: {
+      "&: focus": {
+          outline: "none",
+      },
+    },
     textField: {
         width: "100%",
         '& label.Mui-focused': {
@@ -126,7 +131,12 @@ const StudentSignUpForm = () => {
             console.log(userValues)
         } else {
             console.log("! validate form");
+        }
+    }
 
+    const handleEnterDown = (e) => {
+        if (e.key === 'Enter') {
+            handleSubmit()
         }
     }
 
@@ -261,7 +271,7 @@ const StudentSignUpForm = () => {
     const [confirmTag, setConfirmTag] = useState(() => renderConfirm('valid'))
 
     return (
-        <form className="sign-up-form">
+        <form className={classes.form} onKeyDown={handleEnterDown} tabIndex="0">
             <Grid container spacing={2}>
                 <Grid item xs={6} className={classes.formItem}>
                     { firstNameTag }

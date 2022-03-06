@@ -1,5 +1,5 @@
 import logo from '../images/teacher-regular.png'
-import './TeacherLogin.css'
+import './Login.css'
 import TeacherAccessCard from "../components/TeacherAccessCard";
 
 

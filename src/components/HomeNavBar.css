@@ -17,7 +17,6 @@
 .student-button {
     font-family: 'Red Hat Text', serif;
     font-size: 15px;
-    font-weight: bolder;
     background-color: #f7f7f7;
     width: 120px;
     height: 50px;
@@ -30,13 +29,12 @@
 }
 
 .student-button:hover {
-    border: solid #7dc241;
+    border: solid 1px #7dc241;
 }
 
 .teacher-button {
     font-family: 'Red Hat Text', serif;
     font-size: 15px;
-    font-weight: bolder;
     background-color: #f7f7f7;
     width: 120px;
     height: 50px;
@@ -49,5 +47,5 @@
 }
 
 .teacher-button:hover {
-    border: solid #fbb03b;
+    border: solid 1px #fbb03b;
 }
