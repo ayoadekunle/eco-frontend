@@ -4,15 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="745c17e4-6731-46c6-8c75-9037187d9c5f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/pages/EmailConfirm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudentSignInForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudentSignInForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudentSignUpForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudentSignUpForm.js" afterDir="false" />
+    <list default="true" id="745c17e4-6731-46c6-8c75-9037187d9c5f" name="Changes" comment="making requests to rest api">
       <change beforePath="$PROJECT_DIR$/src/components/TeacherSignInForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TeacherSignInForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TeacherSignUpForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TeacherSignUpForm.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,8 +49,16 @@
       <workItem from="1646139656864" duration="108000" />
       <workItem from="1646156098599" duration="2662000" />
       <workItem from="1646237082748" duration="486000" />
-      <workItem from="1646607199621" duration="24613000" />
+      <workItem from="1646607199621" duration="25134000" />
     </task>
+    <task id="LOCAL-00001" summary="making requests to rest api">
+      <created>1647372562260</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1647372562260</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -73,5 +74,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="making requests to rest api" />
+    <option name="LAST_COMMIT_MESSAGE" value="making requests to rest api" />
   </component>
 </project>

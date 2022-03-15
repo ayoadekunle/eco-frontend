@@ -9,7 +9,7 @@ const initialUserValues = {
     password: '',
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles( theme => ({
     form: {
         "&:focus": {
             outline: "none",
