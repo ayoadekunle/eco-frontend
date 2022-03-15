@@ -1,6 +1,7 @@
 import {Button, Grid, TextField} from "@mui/material";
 import {useState} from "react";
 import {makeStyles} from "@mui/styles";
+import axios from "axios";
 
 
 const initialUserValues = {
@@ -24,7 +25,6 @@ const useStyles = makeStyles(theme => ({
                 borderColor: "#7dc241",
               },
             },
-        fontFamily: "Heiti SC",
     },
     button: {
         color: "#f7f7f7",
@@ -71,7 +71,7 @@ const StudentSignInForm = () => {
             setEmailTag(renderEmail('invalid', "Required field"))
             validate = false
         } else {
-            let regex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
+            let regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
             if (!(regex.test(userValues.email))) {
                 setEmailTag(renderEmail('invalid', "Invalid format"))
                 validate = false
@@ -81,7 +81,7 @@ const StudentSignInForm = () => {
         }
 
         // Validate password: must be at least 8 characters long.
-        if (userValues.password.length < 0) {
+        if (userValues.password.length <= 0) {
             setPasswordTag(renderPassword('invalid'))
             validate = false
         } else {
@@ -91,14 +91,26 @@ const StudentSignInForm = () => {
         return validate
     }
 
-
     const handleSubmit = () => {
         if(validateForm()) {
-            console.log("validate form");
-            console.log(userValues)
-        } else {
-            console.log("! validate form");
-
+            axios.post('http://127.0.0.1:8000/auth/login/', userValues)
+                .then(r => console.log(r))
+                .catch(e => {
+                    if (e.response) {
+                        // The request was made and the server responded with a status code
+                        console.log(e.response.data);
+                        console.log(e.response.status);
+                        console.log(e.response.headers);
+                    } else if (e.request) {
+                        // The request was made but no response was received
+                        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                        // http.ClientRequest in node.js
+                        console.log(e.request);
+                    } else {
+                        // Something happened in setting up the request that triggered an Error
+                        console.log('Error', e.message);
+                    }
+                })
         }
     }
 

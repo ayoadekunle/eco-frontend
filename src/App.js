@@ -4,6 +4,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import StudentLogin from "./pages/StudentLogin";
 import TeacherLogin from "./pages/TeacherLogin";
 import Home from "./pages/Home";
+import EmailConfirm from "./pages/EmailConfirm";
 
 
 const theme = createTheme({
@@ -23,6 +24,7 @@ function App() {
                         <Route index element={<Home />} />
                         <Route path="/student" element={<StudentLogin />} />
                         <Route path="/teacher" element={<TeacherLogin />} />
+                        <Route path="/email-confirmation" element={<EmailConfirm />} />
                     </Routes>
                 </BrowserRouter>
             </div>

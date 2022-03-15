@@ -1,13 +1,14 @@
 import {useState} from "react";
 import {Button, Grid, TextField} from "@mui/material";
 import { makeStyles } from "@mui/styles";
-
+import axios from "axios";
 
 const initialUserValues = {
-    firstName: '',
-    lastName: '',
+    first_name: '',
+    last_name: '',
     email: '',
-    password: '',
+    password1: '',
+    password2: '',
 }
 
 const useStyles = makeStyles(theme => ({
@@ -49,18 +50,17 @@ const useStyles = makeStyles(theme => ({
 const TeacherSignUpForm = () => {
 
     const [userValues, setUserValues] = useState(initialUserValues);
-    const [passwordConfirmation, setPasswordConfirmation] = useState('');
 
     const classes = useStyles();
 
     const handleChange = (e, type) => {
         if (type === 'first_name') {
             setUserValues (prevState => {
-                return { ...prevState, firstName: e.target.value}
+                return { ...prevState, first_name: e.target.value}
             });
         } else if (type === 'last_name') {
             setUserValues (prevState => {
-                return { ...prevState, lastName: e.target.value}
+                return { ...prevState, last_name: e.target.value}
             });
         } else if (type === 'email') {
             setUserValues (prevState => {
@@ -68,24 +68,26 @@ const TeacherSignUpForm = () => {
             });
         } else if (type === 'password') {
             setUserValues ( prevState => {
-                return { ...prevState, password: e.target.value}
+                return { ...prevState, password1: e.target.value}
             });
         } else if (type === 'confirm_password') {
-            setPasswordConfirmation(e.target.value)
+            setUserValues ( prevState => {
+                return { ...prevState, password2: e.target.value}
+            });
         }
     }
 
     const validateForm = () => {
         let validate = true
         // Validate names: Cannot be empty
-        if (userValues.firstName === '') {
+        if (userValues.first_name === '') {
             setFirstNameTag(renderFirstName('invalid', "Required field"))
             validate = false
         } else {
             setFirstNameTag(renderFirstName('valid', ""))
         }
 
-        if (userValues.lastName === '') {
+        if (userValues.last_name === '') {
             setLastNameTag(renderLastName('invalid', "Required field"))
             validate = false
         } else {
@@ -97,7 +99,7 @@ const TeacherSignUpForm = () => {
             setEmailTag(renderEmail('invalid', "Required field"))
             validate = false
         } else {
-            let regex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
+            let regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
             if (!(regex.test(userValues.email))) {
                 setEmailTag(renderEmail('invalid', "Invalid format"))
                 validate = false
@@ -107,14 +109,14 @@ const TeacherSignUpForm = () => {
         }
 
         // Validate password: must be at least 8 characters long.
-        if (userValues.password.length < 8) {
+        if (userValues.password1.length < 8) {
             setPasswordTag(renderPassword('invalid'))
             validate = false
         } else {
             setPasswordTag(renderPassword('valid'))
         }
 
-        if (passwordConfirmation !== userValues.password) {
+        if (userValues.password1 !== userValues.password2) {
             setConfirmTag(renderConfirm('invalid'))
             validate = false
         } else {
@@ -126,8 +128,26 @@ const TeacherSignUpForm = () => {
 
     const handleSubmit = () => {
         if(validateForm()) {
-            console.log("validate form");
             console.log(userValues)
+            axios.post('http://127.0.0.1:8000/auth/register/', userValues)
+                .then(r => console.log(r))
+                .catch(e => {
+                    if (e.response) {
+                        // The request was made and the server responded with a status code
+                        console.log(e.response.data);
+                        console.log(e.response.status);
+                        console.log(e.response.headers);
+                    } else if (e.request) {
+                        // The request was made but no response was received
+                        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                        // http.ClientRequest in node.js
+                        console.log(e.request);
+                    } else {
+                        // Something happened in setting up the request that triggered an Error
+                        console.log('Error', e.message);
+                    }
+                })
+
         } else {
             console.log("! validate form");
         }
@@ -296,6 +316,5 @@ const TeacherSignUpForm = () => {
         </form>
     )
 }
-
 
 export default TeacherSignUpForm

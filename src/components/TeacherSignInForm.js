@@ -1,6 +1,7 @@
 import {Button, Grid, TextField} from "@mui/material";
 import {useState} from "react";
 import {makeStyles} from "@mui/styles";
+import axios from "axios";
 
 
 const initialUserValues = {
@@ -9,7 +10,7 @@ const initialUserValues = {
 }
 
 const useStyles = makeStyles(theme => ({
-    form : {
+    form: {
         "&:focus": {
             outline: "none",
         },
@@ -69,7 +70,7 @@ const TeacherSignInForm = () => {
             setEmailTag(renderEmail('invalid', "Required field"))
             validate = false
         } else {
-            let regex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
+            const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
             if (!(regex.test(userValues.email))) {
                 setEmailTag(renderEmail('invalid', "Invalid format"))
                 validate = false
@@ -79,7 +80,7 @@ const TeacherSignInForm = () => {
         }
 
         // Validate password: must be at least 8 characters long.
-        if (userValues.password.length <= 0) {
+        if (userValues.password.length < 8) {
             setPasswordTag(renderPassword('invalid'))
             validate = false
         } else {
@@ -89,13 +90,26 @@ const TeacherSignInForm = () => {
         return validate
     }
 
-
     const handleSubmit = () => {
         if (validateForm()) {
-            console.log("validate form");
-            console.log(userValues)
-        } else {
-            console.log("! validate form");
+            axios.post('http://127.0.0.1:8000/auth/login/', userValues)
+                .then(r => console.log(r))
+                .catch(e => {
+                    if (e.response) {
+                        // The request was made and the server responded with a status code
+                        console.log(e.response.data);
+                        console.log(e.response.status);
+                        console.log(e.response.headers);
+                    } else if (e.request) {
+                        // The request was made but no response was received
+                        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                        // http.ClientRequest in node.js
+                        console.log(e.request);
+                    } else {
+                        // Something happened in setting up the request that triggered an Error
+                        console.log('Error', e.message);
+                    }
+                })
         }
     }
 
@@ -158,7 +172,7 @@ const TeacherSignInForm = () => {
     const [passwordTag, setPasswordTag] = useState(() => renderPassword('valid'))
 
     return (
-        <form className={classes.form} onKeyDown={handleEnterDown} tabIndex="0">
+        <form className={classes.form} onKeyDown={handleEnterDown}>
             <Grid container spacing={2}>
                 <Grid item xs={12} className={classes.formItem}>
                     {emailTag}
@@ -167,7 +181,7 @@ const TeacherSignInForm = () => {
                     {passwordTag}
                 </Grid>
                 <Grid item xs={12} className={classes.formItem}>
-                    <Button className={classes.button} onClick={handleSubmit} >
+                    <Button className={classes.button} onClick={handleSubmit}>
                         Log In
                     </Button>
                 </Grid>
