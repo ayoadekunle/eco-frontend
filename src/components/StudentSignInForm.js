@@ -10,7 +10,7 @@ const initialUserValues = {
 }
 
 const useStyles = makeStyles(theme => ({
-    form : {
+    form: {
         "&:focus": {
             outline: "none",
         },
@@ -94,7 +94,9 @@ const StudentSignInForm = () => {
     const handleSubmit = () => {
         if(validateForm()) {
             axios.post('http://127.0.0.1:8000/auth/login/', userValues)
-                .then(r => console.log(r))
+                .then(r => {
+                    console.log(r)
+                })
                 .catch(e => {
                     if (e.response) {
                         // The request was made and the server responded with a status code
