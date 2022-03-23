@@ -11,11 +11,11 @@ const theme = createTheme({
     typography: {
         allVariants: {
             fontFamily: `"Heiti SC", serif`,
-        }
-    }
-})
+        },
+    },
+});
 
-function App() {
+const App = () => {
     return (
         <ThemeProvider theme={theme}>
             <div className={"app"}>
@@ -29,7 +29,7 @@ function App() {
                 </BrowserRouter>
             </div>
         </ThemeProvider>
-    );
-}
+    )
+};
 
 export default App;

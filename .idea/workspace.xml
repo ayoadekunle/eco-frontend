@@ -6,9 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="745c17e4-6731-46c6-8c75-9037187d9c5f" name="Changes" comment="making requests to rest api">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AccessCard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AccessCard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StudentAccessCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudentAccessCard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/StudentSignInForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudentSignInForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StudentSignUpForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudentSignUpForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TeacherAccessCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TeacherAccessCard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/TeacherSignInForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TeacherSignInForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TeacherSignUpForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TeacherSignUpForm.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/EmailConfirm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/EmailConfirm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +61,7 @@
       <workItem from="1646237082748" duration="486000" />
       <workItem from="1646607199621" duration="31419000" />
       <workItem from="1647906611754" duration="265000" />
+      <workItem from="1648002405051" duration="12392000" />
     </task>
     <task id="LOCAL-00001" summary="making requests to rest api">
       <created>1647372562260</created>

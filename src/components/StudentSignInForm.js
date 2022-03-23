@@ -1,4 +1,4 @@
-import {Button, Grid, TextField} from "@mui/material";
+import {Alert, Button, Grid, TextField} from "@mui/material";
 import {useState} from "react";
 import {makeStyles} from "@mui/styles";
 import axios from "axios";
@@ -7,7 +7,7 @@ import axios from "axios";
 const initialUserValues = {
     email: '',
     password: '',
-}
+};
 
 const useStyles = makeStyles(theme => ({
     form: {
@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
         color: "#f7f7f7",
         backgroundColor: "#7dc241",
         cursor: "pointer",
-        margin: "20px auto",
+        margin: "10px auto 20px auto",
         width: "80%",
         height: "50px",
         borderRadius: "5px",
@@ -61,7 +61,7 @@ const StudentSignInForm = () => {
                 return { ...prevState, password: e.target.value}
             });
         }
-    }
+    };
 
     const validateForm = () => {
         let validate = true
@@ -89,38 +89,52 @@ const StudentSignInForm = () => {
         }
 
         return validate
-    }
+    };
 
     const handleSubmit = () => {
-        if(validateForm()) {
+
+        if (validateForm()) {
+
             axios.post('http://127.0.0.1:8000/auth/login/', userValues)
                 .then(r => {
-                    console.log(r)
                 })
-                .catch(e => {
-                    if (e.response) {
+                .catch(err => {
+                    if (err.response) {
                         // The request was made and the server responded with a status code
-                        console.log(e.response.data);
-                        console.log(e.response.status);
-                        console.log(e.response.headers);
-                    } else if (e.request) {
+
+                        let alerts = [];
+
+                        Object.values(err.response.data).forEach ( item => {
+                            alerts.push(
+                                <Grid item xs={12}>
+                                    <Alert severity="error"> { item } </Alert>
+                                </Grid>
+                            );
+                        });
+
+                        setAlertsTag(renderAlert(alerts));
+
+                        // console.log(err.response.data);
+                        // console.log(err.response.status);
+                        // console.log(err.response.headers);
+                    } else if (err.request) {
                         // The request was made but no response was received
                         // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
                         // http.ClientRequest in node.js
-                        console.log(e.request);
+                        console.log(err.request);
                     } else {
                         // Something happened in setting up the request that triggered an Error
-                        console.log('Error', e.message);
+                        console.log('Error', err.message);
                     }
                 })
         }
-    }
+    };
 
     const handleEnterDown = (e) => {
         if (e.key === 'Enter') {
             handleSubmit()
         }
-    }
+    };
 
     const renderEmail = (type, errorMessage) => {
         if (type === 'valid') {
@@ -144,8 +158,8 @@ const StudentSignInForm = () => {
                 />
             )
         }
-    }
-    const [emailTag, setEmailTag] = useState(() => renderEmail('valid', ''))
+    };
+    const [emailTag, setEmailTag] = useState(() => renderEmail('valid', ''));
 
     const renderPassword = (type) => {
         if (type === 'valid') {
@@ -171,8 +185,21 @@ const StudentSignInForm = () => {
                 />
             )
         }
-    }
-    const [passwordTag, setPasswordTag] = useState(() => renderPassword('valid'))
+    };
+    const [passwordTag, setPasswordTag] = useState(() => renderPassword('valid'));
+
+    const renderAlert = ( message ) => {
+        if (message === null) {
+            return (
+                <div hidden={true}/>
+            )
+        } else {
+            return (
+                <Grid container spacing={2}> {message} </Grid>
+            );
+        }
+    };
+    const [alertTags, setAlertsTag] = useState(renderAlert(null));
 
     return (
         <form className={classes.form} onKeyDown={handleEnterDown} tabIndex="0">
@@ -189,8 +216,9 @@ const StudentSignInForm = () => {
                     </Button>
                 </Grid>
             </Grid>
+            { alertTags }
         </form>
     )
-}
+};
 
-export default StudentSignInForm
+export default StudentSignInForm;

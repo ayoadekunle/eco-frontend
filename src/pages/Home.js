@@ -5,7 +5,7 @@ const Home = () => {
         <div className="Home">
             <HomeNavBar/>
         </div>
-    )
-}
+    );
+};
 
-export default Home
+export default Home;

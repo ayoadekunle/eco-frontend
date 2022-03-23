@@ -18,7 +18,7 @@ const StudentAccessCard = () => {
                 </p>
             </Paper>
         )
-    }
+    };
 
     const SignUp = () => {
         return (
@@ -31,7 +31,7 @@ const StudentAccessCard = () => {
                 </p>
             </Paper>
         )
-    }
+    };
 
     const changeForm = ( to ) => {
         if (to === "sign-up") {
@@ -39,7 +39,7 @@ const StudentAccessCard = () => {
         } else {
             setForm(SignIn())
         }
-    }
+    };
 
     const [form, setForm] = useState( () => SignIn())
 
@@ -48,6 +48,6 @@ const StudentAccessCard = () => {
             { form }
         </div>
     )
-}
+};
 
-export default StudentAccessCard
+export default StudentAccessCard;

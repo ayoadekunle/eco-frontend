@@ -42,9 +42,8 @@ const useStyles = makeStyles(theme => ({
         "&:hover": {
             textDecoration: "underline",
         },
-    }
-
-}))
+    },
+}));
 
 const EmailConfirm = () => {
 
@@ -68,4 +67,4 @@ const EmailConfirm = () => {
     )
 }
 
-export default EmailConfirm
+export default EmailConfirm;
