@@ -1,4 +1,4 @@
-import logo from '../images/eco-regular.png'
+import logo from '../images/eco-vertical.png'
 import {makeStyles} from "@mui/styles";
 import {Link} from "react-router-dom";
 
@@ -47,7 +47,7 @@ const useStyles = makeStyles(theme => ({
 
 const EmailConfirm = () => {
 
-    const classes = useStyles()
+    const classes = useStyles();
 
     return (
         <div className={classes.body}>

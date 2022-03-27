@@ -1,6 +1,6 @@
 import {useState} from "react";
 import {Alert, Button, Grid, TextField} from "@mui/material";
-import { makeStyles } from "@mui/styles";
+import {makeStyles} from "@mui/styles";
 import axios from "axios";
 
 
@@ -14,9 +14,9 @@ const initialUserValues = {
 
 const useStyles = makeStyles(theme => ({
     form: {
-      "&: focus": {
-          outline: "none",
-      },
+        "&:focus": {
+            outline: "none",
+        },
     },
     textField: {
         width: "100%",
@@ -24,27 +24,32 @@ const useStyles = makeStyles(theme => ({
             color: "#7dc241",
         },
         '& .MuiOutlinedInput-root': {
-              '&.Mui-focused fieldset': {
+            '&.Mui-focused fieldset': {
                 borderColor: "#7dc241",
-              },
             },
+        },
         fontFamily: "Heiti SC",
     },
     button: {
-        color: "#f7f7f7",
-        backgroundColor: "#7dc241",
         cursor: "pointer",
-        margin: "10px auto",
+        margin: "10px auto 20px auto",
         width: "80%",
         height: "50px",
         borderRadius: "5px",
         fontFamily: "Heiti SC",
-        "&:hover": {
-            backgroundColor: "#679f35",
-        }
+        "&.MuiButton-text": {
+            color: "#f7f7f7",
+            backgroundColor: "#7dc241",
+            "&:hover": {
+                backgroundColor: "#679f35",
+            },
+        },
     },
     formItem: {
         textAlign: "center",
+    },
+    gridContainer: {
+        marginBottom: "16px",
     },
 }));
 
@@ -56,24 +61,24 @@ const StudentSignUpForm = () => {
 
     const handleChange = (e, type) => {
         if (type === 'first_name') {
-            setUserValues (prevState => {
-                return { ...prevState, first_name: e.target.value}
+            setUserValues(prevState => {
+                return {...prevState, first_name: e.target.value}
             });
         } else if (type === 'last_name') {
-            setUserValues (prevState => {
-                return { ...prevState, last_name: e.target.value}
+            setUserValues(prevState => {
+                return {...prevState, last_name: e.target.value}
             });
         } else if (type === 'email') {
-            setUserValues (prevState => {
-                return { ...prevState, email: e.target.value}
+            setUserValues(prevState => {
+                return {...prevState, email: e.target.value}
             });
         } else if (type === 'password') {
-            setUserValues ( prevState => {
-                return { ...prevState, password1: e.target.value}
+            setUserValues(prevState => {
+                return {...prevState, password1: e.target.value}
             });
         } else if (type === 'confirm_password') {
-            setUserValues ( prevState => {
-                return { ...prevState, password2: e.target.value}
+            setUserValues(prevState => {
+                return {...prevState, password2: e.target.value}
             });
         }
     };
@@ -129,17 +134,17 @@ const StudentSignUpForm = () => {
 
     const handleSubmit = () => {
 
-        if(validateForm()) {
+        if (validateForm()) {
 
             axios.post('http://127.0.0.1:8000/auth/register/', userValues)
                 .then(r => {
 
                     let alerts = [];
 
-                    Object.values(r.data).forEach ( item => {
+                    Object.values(r.data).forEach(item => {
                         alerts.push(
                             <Grid item xs={12}>
-                                <Alert severity="success"> { item } </Alert>
+                                <Alert severity="success"> {item} </Alert>
                             </Grid>
                         );
                     });
@@ -152,10 +157,10 @@ const StudentSignUpForm = () => {
                         // The request was made and the server responded with a status code
                         let alerts = [];
 
-                        Object.values(err.response.data).forEach ( item => {
+                        Object.values(err.response.data).forEach(item => {
                             alerts.push(
                                 <Grid item xs={12}>
-                                    <Alert severity="error"> { item } </Alert>
+                                    <Alert severity="error"> {item} </Alert>
                                 </Grid>
                             );
                         });
@@ -213,11 +218,11 @@ const StudentSignUpForm = () => {
         if (type === 'valid') {
             return (
                 <TextField variant="outlined"
-                               label="First Name"
-                               className={classes.textField}
-                               onChange={e => handleChange(e, 'first_name')}
-                               required
-                    />
+                           label="First Name"
+                           className={classes.textField}
+                           onChange={e => handleChange(e, 'first_name')}
+                           required
+                />
             )
         } else {
             return (
@@ -238,11 +243,11 @@ const StudentSignUpForm = () => {
         if (type === 'valid') {
             return (
                 <TextField variant="outlined"
-                               label="Last Name"
-                               className={classes.textField}
-                               onChange={e => handleChange(e, 'last_name')}
-                               required
-                    />
+                           label="Last Name"
+                           className={classes.textField}
+                           onChange={e => handleChange(e, 'last_name')}
+                           required
+                />
             )
         } else {
             return (
@@ -314,15 +319,15 @@ const StudentSignUpForm = () => {
     };
     const [confirmTag, setConfirmTag] = useState(() => renderConfirm('valid'));
 
-    const renderAlert = ( messages ) => {
+    const renderAlert = (messages) => {
         if (messages === null) {
             return (
                 <div hidden={true}/>
             )
         } else {
             return (
-                <Grid container spacing={2}>
-                    { messages }
+                <Grid container spacing={2} className={classes.gridContainer}>
+                    {messages}
                 </Grid>
             )
         }
@@ -331,32 +336,31 @@ const StudentSignUpForm = () => {
 
     return (
         <form className={classes.form} onKeyDown={handleEnterDown} tabIndex="0">
-            <Grid container spacing={2}>
+            <Grid container spacing={2} className={classes.gridContainer}>
                 <Grid item xs={6} className={classes.formItem}>
-                    { firstNameTag }
+                    {firstNameTag}
                 </Grid>
                 <Grid item xs={6} className={classes.formItem}>
-                    { lastNameTag }
+                    {lastNameTag}
                 </Grid>
                 <Grid item xs={12} className={classes.formItem}>
-                    { emailTag }
+                    {emailTag}
                 </Grid>
                 <Grid item xs={12} className={classes.formItem}>
-                    { passwordTag }
+                    {passwordTag}
                 </Grid>
                 <Grid item xs={12} className={classes.formItem}>
-                    { confirmTag }
+                    {confirmTag}
                 </Grid>
                 <Grid item xs={12} className={classes.formItem}>
-                    <Button className={classes.button} onClick = {handleSubmit}>
+                    <Button className={classes.button} onClick={handleSubmit}>
                         Create Account
                     </Button>
                 </Grid>
             </Grid>
-            { alertsTag }
+            {alertsTag}
         </form>
     )
 };
-
 
 export default StudentSignUpForm;

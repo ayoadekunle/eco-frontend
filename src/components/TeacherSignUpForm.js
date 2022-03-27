@@ -3,6 +3,7 @@ import {Alert, Button, Grid, TextField} from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import axios from "axios";
 
+
 const initialUserValues = {
     first_name: '',
     last_name: '',
@@ -30,27 +31,32 @@ const useStyles = makeStyles(theme => ({
         fontFamily: "Heiti SC",
     },
     button: {
-        color: "#f7f7f7",
-        backgroundColor: "#fbb03b",
         cursor: "pointer",
         margin: "20px auto",
         width: "80%",
         height: "50px",
         borderRadius: "5px",
         fontFamily: "Heiti SC",
-        "&:hover": {
-            backgroundColor: "#da9933",
-        }
+        "&.MuiButton-text": {
+            color: "#f7f7f7",
+            backgroundColor: "#fbb03b",
+            "&:hover": {
+                backgroundColor: "#da9933",
+            },
+        },
     },
     formItem: {
         textAlign: "center",
     },
+    gridContainer: {
+        marginBottom: "16px",
+    },
 }));
+
 
 const TeacherSignUpForm = () => {
 
     const [userValues, setUserValues] = useState(initialUserValues);
-
     const classes = useStyles();
 
     const handleChange = (e, type) => {
@@ -174,7 +180,6 @@ const TeacherSignUpForm = () => {
                         console.log('Error', err.message);
                     }
                 })
-
         }
     };
 
@@ -321,7 +326,7 @@ const TeacherSignUpForm = () => {
             )
         } else {
             return (
-                <Grid container spacing={2}>
+                <Grid container spacing={2} className={classes.gridContainer}>
                     { messages }
                 </Grid>
             )
@@ -331,7 +336,7 @@ const TeacherSignUpForm = () => {
 
     return (
         <form className={classes.form} onKeyDown={handleEnterDown} tabIndex="0">
-            <Grid container spacing={2}>
+            <Grid container spacing={2} className={classes.gridContainer}>
                 <Grid item xs={6} className={classes.formItem}>
                     { firstNameTag }
                 </Grid>
@@ -358,4 +363,4 @@ const TeacherSignUpForm = () => {
     )
 }
 
-export default TeacherSignUpForm
+export default TeacherSignUpForm;

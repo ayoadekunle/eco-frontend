@@ -1,35 +1,73 @@
-import './AccessCard.css'
-
 import {useState} from "react";
-import {Paper} from "@mui/material";
+import {Card} from "@mui/material";
 import StudentSignUpForm from "./StudentSignUpForm";
 import StudentSignInForm from "./StudentSignInForm";
+import {makeStyles} from "@mui/styles";
 
+
+const useStyles = makeStyles(theme => ({
+    cardContainer: {
+        width: "50%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    card: {
+        padding: "20px",
+        textAlign: "center",
+        width: "70%",
+        maxWidth: "500px",
+        backgroundColor: "white",
+        borderRadius: "10px",
+    },
+    studentMessage: {
+        fontSize: "14px",
+    },
+    link: {
+        color: "#7dc241",
+        cursor: "pointer",
+        "&:hover": {
+            textDecoration: "underline",
+            transitionDuration: "0.2s",
+            transitionProperty: "color",
+            transitionDelay: "0s",
+        },
+    },
+    hr: {
+        backgroundColor: "#dddfe2",
+        border: "none",
+        height: "1px",
+        margin: "20px 0",
+    },
+}));
 
 const StudentAccessCard = () => {
+
+    const classes = useStyles();
+
     const SignIn = () => {
         return (
-            <Paper className={"card"}>
+            <Card className={classes.card}>
                 <h3>Sign in to your account</h3>
                 <StudentSignInForm />
-                <hr/>
-                <p className={"student-message"}>
-                    Don't have an account? <span className="link" onClick={() => changeForm("sign-up")}>Create Account.</span>
+                <hr className={classes.hr}/>
+                <p className={classes.studentMessage}>
+                    Don't have an account? <span className={classes.link} onClick={() => changeForm("sign-up")}>Create Account.</span>
                 </p>
-            </Paper>
+            </Card>
         )
     };
 
     const SignUp = () => {
         return (
-            <Paper className={"card"}>
+            <Card className={classes.card}>
                 <h3>Create Student Account</h3>
                 <StudentSignUpForm/>
-                <hr/>
-                <p className={"student-message"}>
-                    Already have an account? <span className="link" onClick={() => changeForm("sign-in")}>Log in.</span>
+                <hr className={classes.hr}/>
+                <p className={classes.studentMessage}>
+                    Already have an account? <span className={classes.link} onClick={() => changeForm("sign-in")}>Log in.</span>
                 </p>
-            </Paper>
+            </Card>
         )
     };
 
@@ -44,7 +82,7 @@ const StudentAccessCard = () => {
     const [form, setForm] = useState( () => SignIn())
 
     return (
-        <div className="card-container">
+        <div className={classes.cardContainer}>
             { form }
         </div>
     )

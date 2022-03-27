@@ -2,6 +2,8 @@ import {Alert, Button, Grid, TextField} from "@mui/material";
 import {useState} from "react";
 import {makeStyles} from "@mui/styles";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
+import {setStudentData, setUserData} from "./UserData";
 
 
 const initialUserValues = {
@@ -21,44 +23,48 @@ const useStyles = makeStyles(theme => ({
             color: "#7dc241",
         },
         '& .MuiOutlinedInput-root': {
-              '&.Mui-focused fieldset': {
+            '&.Mui-focused fieldset': {
                 borderColor: "#7dc241",
-              },
             },
+        },
     },
     button: {
-        color: "#f7f7f7",
-        backgroundColor: "#7dc241",
         cursor: "pointer",
         margin: "10px auto 20px auto",
         width: "80%",
         height: "50px",
         borderRadius: "5px",
         fontFamily: "Heiti SC",
-        "&:hover": {
-            backgroundColor: "#679f35",
-        }
+        "&.MuiButton-text": {
+            color: "#f7f7f7",
+            backgroundColor: "#7dc241",
+            "&:hover": {
+                backgroundColor: "#679f35",
+            },
+        },
     },
     formItem: {
         textAlign: "center",
     },
+    gridContainer: {
+        marginBottom: "16px",
+    },
 }));
-
 
 const StudentSignInForm = () => {
 
     const classes = useStyles();
-
+    const navigate = useNavigate();
     const [userValues, setUserValues] = useState(initialUserValues);
 
     const handleChange = (e, type) => {
         if (type === 'email') {
-            setUserValues (prevState => {
-                return { ...prevState, email: e.target.value}
+            setUserValues(prevState => {
+                return {...prevState, email: e.target.value}
             });
         } else if (type === 'password') {
-            setUserValues ( prevState => {
-                return { ...prevState, password: e.target.value}
+            setUserValues(prevState => {
+                return {...prevState, password: e.target.value}
             });
         }
     };
@@ -97,6 +103,19 @@ const StudentSignInForm = () => {
 
             axios.post('http://127.0.0.1:8000/auth/login/', userValues)
                 .then(r => {
+
+                    setUserData(r.data.user);
+                    axios.get('http://127.0.0.1:8000/students/' + r.data.user.id)
+                        .then(r => {
+                            setStudentData(r.data);
+                            navigate("/student/dashboard");
+                        })
+                        .catch(err => {
+                            if (err.response) {
+                                console.log(err.response.data);
+                            }
+                        });
+
                 })
                 .catch(err => {
                     if (err.response) {
@@ -104,10 +123,10 @@ const StudentSignInForm = () => {
 
                         let alerts = [];
 
-                        Object.values(err.response.data).forEach ( item => {
+                        Object.values(err.response.data).forEach(item => {
                             alerts.push(
                                 <Grid item xs={12}>
-                                    <Alert severity="error"> { item } </Alert>
+                                    <Alert severity="error"> {item} </Alert>
                                 </Grid>
                             );
                         });
@@ -126,7 +145,7 @@ const StudentSignInForm = () => {
                         // Something happened in setting up the request that triggered an Error
                         console.log('Error', err.message);
                     }
-                })
+                });
         }
     };
 
@@ -188,35 +207,37 @@ const StudentSignInForm = () => {
     };
     const [passwordTag, setPasswordTag] = useState(() => renderPassword('valid'));
 
-    const renderAlert = ( message ) => {
+    const renderAlert = (message) => {
         if (message === null) {
             return (
                 <div hidden={true}/>
             )
         } else {
             return (
-                <Grid container spacing={2}> {message} </Grid>
+                <Grid container spacing={2} className={classes.gridContainer}>
+                    {message}
+                </Grid>
             );
         }
     };
-    const [alertTags, setAlertsTag] = useState(renderAlert(null));
+    const [alertsTag, setAlertsTag] = useState(renderAlert(null));
 
     return (
         <form className={classes.form} onKeyDown={handleEnterDown} tabIndex="0">
-            <Grid container spacing={2}>
+            <Grid container spacing={2} className={classes.gridContainer}>
                 <Grid item xs={12} className={classes.formItem}>
-                    { emailTag }
+                    {emailTag}
                 </Grid>
                 <Grid item xs={12} className={classes.formItem}>
-                    { passwordTag }
+                    {passwordTag}
                 </Grid>
                 <Grid item xs={12} className={classes.formItem}>
-                    <Button className={classes.button} onClick = {handleSubmit}>
+                    <Button className={classes.button} onClick={handleSubmit}>
                         Log In
                     </Button>
                 </Grid>
             </Grid>
-            { alertTags }
+            {alertsTag}
         </form>
     )
 };

@@ -2,6 +2,8 @@ import {Alert, Button, Grid, TextField} from "@mui/material";
 import {useState} from "react";
 import {makeStyles} from "@mui/styles";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
+import {setTeacherData, setUserData} from "./UserData";
 
 
 const initialUserValues = {
@@ -27,27 +29,32 @@ const useStyles = makeStyles( theme => ({
         },
     },
     button: {
-        color: "#f7f7f7",
-        backgroundColor: "#fbb03b",
         cursor: "pointer",
         margin: "10px auto 20px auto",
         width: "80%",
         height: "50px",
         borderRadius: "5px",
         fontFamily: "Heiti SC",
-        "&:hover": {
-            backgroundColor: "#da9933",
-        }
+        "&.MuiButton-text": {
+            color: "#f7f7f7",
+            backgroundColor: "#fbb03b",
+            "&:hover": {
+                backgroundColor: "#da9933",
+            },
+        },
     },
     formItem: {
         textAlign: "center",
     },
+    gridContainer: {
+        marginBottom: "16px",
+    },
 }));
-
 
 const TeacherSignInForm = () => {
 
     const classes = useStyles();
+    const navigate = useNavigate();
     const [userValues, setUserValues] = useState(initialUserValues);
 
     const handleChange = (e, type) => {
@@ -93,10 +100,22 @@ const TeacherSignInForm = () => {
     const handleSubmit = () => {
         
         if (validateForm()) {
-            
+
             axios.post('http://127.0.0.1:8000/auth/login/', userValues)
                 .then(r => {
-                    console.log(r.data);
+
+                    setUserData(r.data.user);
+                    axios.get('http://127.0.0.1:8000/teachers/' + r.data.user.id)
+                        .then(r => {
+                            setTeacherData(r.data);
+                            navigate("/teacher/dashboard");
+                        })
+                        .catch(err => {
+                            if (err.response) {
+                                console.log(err.response.data);
+                            }
+                        });
+
                 })
                 .catch(err => {
                     if (err.response) {
@@ -113,7 +132,7 @@ const TeacherSignInForm = () => {
                         });
 
                         setAlertsTag(renderAlert(alerts));
-                        
+
                         // console.log(err.response.data);
                         // console.log(err.response.status);
                         // console.log(err.response.headers);
@@ -126,7 +145,7 @@ const TeacherSignInForm = () => {
                         // Something happened in setting up the request that triggered an Error
                         console.log('Error', err.message);
                     }
-                })
+                });
         }
     };
 
@@ -195,7 +214,9 @@ const TeacherSignInForm = () => {
             )
         } else {
             return (
-                <Grid container spacing={2}> {message} </Grid>
+                <Grid container spacing={2} className={classes.gridContainer}>
+                    {message}
+                </Grid>
             );
         }
     };
@@ -203,7 +224,7 @@ const TeacherSignInForm = () => {
     
     return (
         <form className={classes.form} onKeyDown={handleEnterDown}>
-            <Grid container spacing={2}>
+            <Grid container spacing={2} className={classes.gridContainer}>
                 <Grid item xs={12} className={classes.formItem}>
                     {emailTag}
                 </Grid>
