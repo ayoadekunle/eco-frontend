@@ -1,6 +1,7 @@
 import logo from '../images/eco-vertical.png'
 import {makeStyles} from "@mui/styles";
 import {Link} from "react-router-dom";
+import {Typography} from "@mui/material";
 
 const useStyles = makeStyles(theme => ({
     body: {
@@ -15,14 +16,16 @@ const useStyles = makeStyles(theme => ({
     logo: {
         width: 250,
         height: "auto",
+        margin: "40px",
     },
     message: {
         margin: "30px 0 10px 0",
         fontSize: "18px",
     },
     links: {
+        width: "400px",
         display: "flex",
-        justifyContent: "center",
+        justifyContent: "space-evenly",
     },
     linkContent: {
         fontSize: "15px",
@@ -53,14 +56,24 @@ const EmailConfirm = () => {
         <div className={classes.body}>
             <div className={classes.container}>
                 <img className={classes.logo} src={logo} alt="eco logo regular"/>
-                <p className={classes.message}>Your email has been confirmed!</p>
+                <Typography variant={"body1"} className={classes.message}>Your email has been confirmed!</Typography>
                 <div className={classes.links}>
-                    <Link to="/student" className={classes.studentLink}>
-                        <p className={classes.linkContent}>Log in as Student</p>
-                    </Link>
-                    <Link to="/teacher" className={classes.teacherLink}>
-                        <p className={classes.linkContent}>Log in as Teacher</p>
-                    </Link>
+                    <Typography
+                        variant={"body1"}
+                        component={Link}
+                        to={"/student"}
+                        className={classes.studentLink}
+                    >
+                        Log in as Student
+                    </Typography>
+                    <Typography
+                        variant={"body1"}
+                        component={Link}
+                        to={"/teacher"}
+                        className={classes.teacherLink}
+                    >
+                        Log in as Teacher
+                    </Typography>
                 </div>
             </div>
         </div>

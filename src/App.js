@@ -1,6 +1,6 @@
 import './App.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import {ThemeProvider, createTheme} from "@mui/material/styles";
 import StudentLogin from "./pages/StudentLogin";
 import TeacherLogin from "./pages/TeacherLogin";
 import Home from "./pages/Home";
@@ -12,9 +12,21 @@ import StudentCourses from "./pages/StudentCourses";
 
 
 const theme = createTheme({
+    components: {
+        MuiTypography: {
+            styleOverrides: {
+                root: {
+                    margin: "15px 0",
+                },
+            },
+        },
+    },
     typography: {
-        allVariants: {
-            fontFamily: `"Heiti SC", serif`,
+        fontFamily: `"Spartan", sans-serif`,
+        button: {
+            "&.nav-button": {
+                fontFamily: `"Red Hat Text", serif`,
+            },
         },
     },
 });
@@ -25,14 +37,14 @@ const App = () => {
             <div className={"app"}>
                 <BrowserRouter>
                     <Routes>
-                        <Route index element={<Home />} />
-                        <Route path="/student" element={<StudentLogin />} />
-                        <Route path="/teacher" element={<TeacherLogin />} />
-                        <Route path="/email-confirmation" element={<EmailConfirm />} />
-                        <Route path="/student/dashboard" element={<StudentHome />} />
-                        <Route path="/teacher/dashboard" element={<TeacherHome />} />
-                        <Route path="/teacher/courses" element={<TeacherCourses />} />
-                        <Route path="/student/courses" element={<StudentCourses />} />
+                        <Route index element={<Home/>}/>
+                        <Route path="/student" element={<StudentLogin/>}/>
+                        <Route path="/teacher" element={<TeacherLogin/>}/>
+                        <Route path="/email-confirmation" element={<EmailConfirm/>}/>
+                        <Route path="/student/dashboard" element={<StudentHome/>}/>
+                        <Route path="/teacher/dashboard" element={<TeacherHome/>}/>
+                        <Route path="/teacher/courses" element={<TeacherCourses/>}/>
+                        <Route path="/student/courses" element={<StudentCourses/>}/>
                     </Routes>
                 </BrowserRouter>
             </div>

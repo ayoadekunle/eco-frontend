@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {Card} from "@mui/material";
+import {Card, Typography} from "@mui/material";
 import TeacherSignUpForm from "./TeacherSignUpForm";
 import TeacherSignInForm from "./TeacherSignInForm";
 import {makeStyles} from "@mui/styles";
@@ -48,12 +48,14 @@ const TeacherAccessCard = () => {
     const SignIn = () => {
         return (
             <Card className={classes.card}>
-                <h3>Sign in to your account</h3>
+                <Typography variant={"h5"}>
+                    Sign in to your account
+                </Typography>
                 <TeacherSignInForm/>
                 <hr className={classes.hr}/>
-                <p className={classes.teacherMessage}>
+                <Typography variant={"body2"} className={classes.teacherMessage}>
                     Don't have an account? <span className={classes.link} onClick={() => changeForm("sign-up")}>Create Account.</span>
-                </p>
+                </Typography>
             </Card>
         )
     };
@@ -61,17 +63,19 @@ const TeacherAccessCard = () => {
     const SignUp = () => {
         return (
             <Card className={classes.card}>
-                <h3>Create Teacher Account</h3>
+                <Typography variant={"h5"}>
+                    Create account
+                </Typography>
                 <TeacherSignUpForm/>
                 <hr className={classes.hr}/>
-                <p className={classes.teacherMessage}>
+                <Typography variant={"body2"} className={classes.teacherMessage}>
                     Already have an account? <span className={classes.link} onClick={() => changeForm("sign-in")}>Log in.</span>
-                </p>
+                </Typography>
             </Card>
         )
     };
 
-    const changeForm = ( to ) => {
+    const changeForm = (to) => {
         if (to === "sign-up") {
             setForm(SignUp())
         } else {
@@ -79,11 +83,11 @@ const TeacherAccessCard = () => {
         }
     };
 
-    const [form, setForm] = useState( () => SignIn())
+    const [form, setForm] = useState(() => SignIn())
 
     return (
         <div className={classes.cardContainer}>
-            { form }
+            {form}
         </div>
     )
 };

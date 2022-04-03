@@ -105,16 +105,7 @@ const StudentSignInForm = () => {
                 .then(r => {
 
                     setUserData(r.data.user);
-                    axios.get('http://127.0.0.1:8000/students/' + r.data.user.id)
-                        .then(r => {
-                            setStudentData(r.data);
-                            navigate("/student/dashboard");
-                        })
-                        .catch(err => {
-                            if (err.response) {
-                                console.log(err.response.data);
-                            }
-                        });
+                    navigate("/student/dashboard");
 
                 })
                 .catch(err => {

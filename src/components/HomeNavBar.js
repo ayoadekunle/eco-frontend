@@ -1,6 +1,6 @@
 import logoHorizontal from '../images/eco-horizontal.png';
-import {Link} from "react-router-dom";
 import {makeStyles} from "@mui/styles";
+import {Button} from "@mui/material";
 
 const useStyles = makeStyles(theme => ({
     navContainer: {
@@ -15,39 +15,43 @@ const useStyles = makeStyles(theme => ({
         height: "auto",
     },
     buttons: {
+        width: "300px",
         display: "flex",
-        alignItems: "center",
+        justifyContent: "space-evenly",
     },
     studentButton: {
-        fontFamily: `Red Hat Text, serif`,
         fontSize: "14px",
-        backgroundColor: "#f7f7f7",
         width: "120px",
         height: "45px",
         border: "none",
         borderRadius: "5px",
-        color: "#7dc241",
         margin: "0 5px",
         cursor: "pointer",
+        textDecoration: "none",
         transition: "50ms",
-        "&:hover": {
-            border: "solid 1px #7dc241",
+        "&.MuiButton-text": {
+            color: "#7dc241",
+            "&:hover": {
+                border: "solid 1px #7dc241",
+                backgroundColor: "#f5faf0",
+            },
         },
     },
     teacherButton: {
-        fontFamily: `Red Hat Text, serif`,
         fontSize: "14px",
-        backgroundColor: "#f7f7f7",
         width: "120px",
         height: "45px",
         border: "none",
         borderRadius: "5px",
-        color: "#fbb03b",
         margin: "0 5px",
         cursor: "pointer",
         transition: "50ms",
-        "&:hover": {
-            border: "solid 1px #fbb03b",
+        "&.MuiButton-text": {
+            color: "#fbb03b",
+            "&:hover": {
+                border: "solid 1px #fbb03b",
+                backgroundColor: "#fff9ef",
+            },
         },
     },
 }));
@@ -58,15 +62,15 @@ const HomeNavBar = () => {
 
     return (
         <div className={classes.navContainer}>
-             <img src={logoHorizontal} alt="logo-horizontal" className={classes.logo}/>
-             <div className={classes.buttons}>
-                 <Link to="/student">
-                     <button className={classes.studentButton}>STUDENT</button>
-                 </Link>
-                 <Link to="/teacher/">
-                     <button className={classes.teacherButton}>TEACHER</button>
-                 </Link>
-             </div>
+            <img src={logoHorizontal} alt="logo-horizontal" className={classes.logo}/>
+            <div className={classes.buttons}>
+                <Button href="/student" className={`${classes.studentButton} nav-button`}>
+                    Student
+                </Button>
+                <Button href="/teacher" className={`${classes.teacherButton} nav-button`}>
+                    Teacher
+                </Button>
+            </div>
         </div>
     )
 }

@@ -1,5 +1,3 @@
-import axios from "axios";
-
 let userData = null;
 let studentData = null;
 let teacherData = null;

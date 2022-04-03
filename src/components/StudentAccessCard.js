@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {Card} from "@mui/material";
+import {Card, Typography} from "@mui/material";
 import StudentSignUpForm from "./StudentSignUpForm";
 import StudentSignInForm from "./StudentSignInForm";
 import {makeStyles} from "@mui/styles";
@@ -48,12 +48,14 @@ const StudentAccessCard = () => {
     const SignIn = () => {
         return (
             <Card className={classes.card}>
-                <h3>Sign in to your account</h3>
+                <Typography variant={"h5"}>
+                    Sign in to your account
+                </Typography>
                 <StudentSignInForm />
                 <hr className={classes.hr}/>
-                <p className={classes.studentMessage}>
+                <Typography variant={"body2"} className={classes.studentMessage}>
                     Don't have an account? <span className={classes.link} onClick={() => changeForm("sign-up")}>Create Account.</span>
-                </p>
+                </Typography>
             </Card>
         )
     };
@@ -61,12 +63,14 @@ const StudentAccessCard = () => {
     const SignUp = () => {
         return (
             <Card className={classes.card}>
-                <h3>Create Student Account</h3>
+                <Typography variant={"h5"}>
+                    Create account
+            </Typography>
                 <StudentSignUpForm/>
                 <hr className={classes.hr}/>
-                <p className={classes.studentMessage}>
+                <Typography variant={"body2"} className={classes.studentMessage}>
                     Already have an account? <span className={classes.link} onClick={() => changeForm("sign-in")}>Log in.</span>
-                </p>
+                </Typography>
             </Card>
         )
     };

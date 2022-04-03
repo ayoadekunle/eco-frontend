@@ -1,9 +1,9 @@
-import {Grid} from "@mui/material";
+import {Grid, Typography} from "@mui/material";
 import logo from "../images/logo.png";
 import {makeStyles} from "@mui/styles";
+import {Link} from "react-router-dom";
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
-import {Link} from "react-router-dom";
 
 
 const useStyles = makeStyles(theme => ({
@@ -13,7 +13,8 @@ const useStyles = makeStyles(theme => ({
         overflow: "hidden",
         position: "fixed",
         top: 0,
-        boxShadow: "rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px",
+        zIndex: 1,
+        // boxShadow: "rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px",
     },
     logoContainer: {
         display: "flex",
@@ -30,32 +31,40 @@ const useStyles = makeStyles(theme => ({
         padding: "0 15px",
     },
     link: {
-        color: "black",
         padding: "15px",
-        margin: "0 10px",
-        fontSize: "17px",
-        fontWeight: 500,
-        textDecoration: "none",
+        fontSize: "15px",
         cursor: "pointer",
         transition: "0.1s",
+        color: "inherit",
+        textDecoration: "none",
         "&:hover": {
             color: "#7dc241",
         },
+        "&.MuiTypography-root": {
+            fontWeight: 600,
+        }
     },
     activeLink: {
-        color: "#7dc241",
-        textDecoration: "none",
         padding: "15px",
-        margin: "0 10px",
-        fontSize: "17px",
-        fontWeight: 500,
+        fontSize: "15px",
         cursor: "pointer",
         transition: "0.1s",
+        margin: "15px 0",
+        color: "#7dc241",
+        textDecoration: "none",
+        "&.MuiTypography-root": {
+            fontWeight: 600,
+        }
     },
     iconsContainer: {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+    },
+    icons: {
+        width: "70%",
+        display: "flex",
+        justifyContent: "space-evenly",
     },
     icon: {
         color: "#46494C",
@@ -79,30 +88,30 @@ const StudentNav = (props) => {
             <Grid item xs={9} className={classes.linksContainer}>
                 <Grid container>
                     <Grid item>
-                        <Link to="/student/dashboard"
-                              className={props.active === 1 ? classes.activeLink : classes.link}
+                        <Typography component={Link} to="/student/dashboard" variant={"body2"}
+                                    className={props.active === 1 ? classes.activeLink : classes.link}
                         >
                             Home
-                        </Link>
+                        </Typography>
                     </Grid>
                     <Grid item>
-                        <Link to="/student/courses"
-                              className={props.active === 2 ? classes.activeLink : classes.link}
+                        <Typography component={Link} to="/student/courses" variant={"body2"}
+                                    className={props.active === 2 ? classes.activeLink : classes.link}
                         >
                             Courses
-                        </Link>
+                        </Typography>
                     </Grid>
                 </Grid>
             </Grid>
             <Grid item xs={2} className={classes.iconsContainer}>
-                <div>
+                <div className={classes.icons}>
                     <AccountCircleRoundedIcon
                         className={classes.icon}
-                        sx={{fontSize: 30}}
+                        sx={{fontSize: 25}}
                     />
                     <NotificationsRoundedIcon
                         className={classes.icon}
-                        sx={{fontSize: 30}}
+                        sx={{fontSize: 25}}
                     />
                 </div>
             </Grid>
