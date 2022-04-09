@@ -105,7 +105,7 @@ const TeacherSignInForm = () => {
                 .then(r => {
 
                     setUserData(r.data.user);
-                    axios.get('http://127.0.0.1:8000/teachers/' + r.data.user.id)
+                    axios.get('http://127.0.0.1:8000/teachers/' + r.data.user.id + '/')
                         .then(r => {
                             setTeacherData(r.data);
                             navigate("/teacher/dashboard");

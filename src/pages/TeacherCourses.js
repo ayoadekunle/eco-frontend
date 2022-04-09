@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import {getTeacherData, getUserData} from "../components/UserData";
 import {
     Alert,
-    Button,
+    Button, Card,
     Dialog,
     DialogActions,
     DialogContent,
@@ -23,6 +23,7 @@ import AdapterMoment from '@mui/lab/AdapterMoment';
 import {DatePicker, LocalizationProvider} from "@mui/lab";
 import axios from "axios";
 import moment from "moment";
+import {StarBorderOutlined} from "@mui/icons-material";
 
 
 const useStyles = makeStyles(theme => ({
@@ -32,6 +33,7 @@ const useStyles = makeStyles(theme => ({
     content: {
         display: "flex",
         justifyContent: "center",
+        padding: "45px 60px",
     },
     errorContainer: {
         display: "flex",
@@ -105,6 +107,30 @@ const useStyles = makeStyles(theme => ({
     },
     gridContainer: {
         marginBottom: "16px",
+        justifyContent: "space-around",
+    },
+    gridItem: {},
+    card: {
+        height: "300px",
+        width: "250px",
+    },
+    cardMedia: {
+        height: "65%",
+        width: "100%",
+        "&: MuiButton-root": {
+            borderRadius: "0px",
+        }
+    },
+    cardInfo: {
+        display: "flex",
+        justifyContent: "center",
+    },
+    cardContent: {
+        width: "100%",
+        display: "inline-flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        padding: "15px",
     },
 }));
 
@@ -130,13 +156,49 @@ const TeacherCourses = () => {
 
     const [activePage, setActivePage] = useState(1);
 
+    const [dialogOpen, setDialogOpen] = useState(false);
+
+    const createCourse = () => {
+        setDialogOpen(true);
+    };
+
+    const handleClose = () => {
+        setDialogOpen(false);
+    };
+
     const renderCoursePage = () => {
         // filter courses for cards
         if (activePage === 1) {
+            const getCards = () => {
+                let cards = []
+                for (let i = 0; i < courses.length; i++) {
+                    cards.push(
+                        <Grid item className={classes.gridItem}>
+                            <Card className={classes.card}>
+                                <div className={classes.cardMedia}
+                                     style={{backgroundColor: courses[i]["color"]}}
+                                />
+                                <div className={classes.cardInfo}>
+                                    <div className={classes.cardContent}>
+                                        <Typography variant={"body1"}>
+                                            {courses[i]["title"]}
+                                        </Typography>
+                                        <IconButton>
+                                            <StarBorderOutlined />
+                                        </IconButton>
+                                    </div>
+                                </div>
+                            </Card>
+                        </Grid>
+                    )
+                }
+                return cards
+            }
+
             return (
-                <Typography variant={"h4"}>
-                    All
-                </Typography>
+                <Grid container className={classes.gridContainer} spacing={5}>
+                    {getCards()}
+                </Grid>
             );
         } else if (activePage === 2) {
             return (
@@ -161,20 +223,35 @@ const TeacherCourses = () => {
     const coursePage = renderCoursePage();
 
     const renderContent = () => {
-        if (userData === null || teacherData === null) return (
-            <div className={classes.content}>
-                <div className={classes.errorContainer}>
-                    <Typography variant={"h6"} className={classes.errorMessage}>
-                        Sorry, but we cannot retrieve your information.
-                        <br/>
-                        <Link to="/teacher" className={classes.errorLink}>
-                            Log in again.
-                        </Link>
-                    </Typography>
+        if (userData === null || teacherData === null) {
+            return (
+                <div className={classes.content}>
+                    <div className={classes.errorContainer}>
+                        <Typography variant={"h6"} className={classes.errorMessage}>
+                            Sorry, but we cannot retrieve your information.
+                            <br/>
+                            <Link to="/teacher" className={classes.errorLink}>
+                                Log in again.
+                            </Link>
+                        </Typography>
+                    </div>
                 </div>
-            </div>
-        );
-        else {
+            );
+        } else if (courses.length === 0) {
+            return (
+                <div className={classes.content}>
+                    <div className={classes.errorContainer}>
+                        <Typography variant={"h6"} className={classes.errorMessage}>
+                            You have no courses added.
+                            <br/>
+                            <span className={classes.errorLink} onClick={() => createCourse()}>
+                                Add Courses.
+                            </span>
+                        </Typography>
+                    </div>
+                </div>
+            )
+        } else {
             return (
                 <div className={classes.content}>
                     {coursePage}
@@ -192,6 +269,7 @@ const TeacherCourses = () => {
         title: "",
         code: "",
         expiry_date: null,
+        color: "",
     }
 
     const [courseValues, setCourseValues] = useState(initialCourseValues);
@@ -211,16 +289,6 @@ const TeacherCourses = () => {
             });
         }
     }
-
-    const [dialogOpen, setDialogOpen] = useState(false);
-
-    const createCourse = () => {
-        setDialogOpen(true);
-    };
-
-    const handleClose = () => {
-        setDialogOpen(false);
-    };
 
     const [titleError, setTitleError] = useState(false);
     const [titleHelper, setTitleHelper] = useState("");
@@ -276,7 +344,7 @@ const TeacherCourses = () => {
             // if request is okay, run again
             // else courseValues.code = result, stop running
 
-            await axios.get('http://127.0.0.1:8000/courses/' + result)
+            await axios.get('http://127.0.0.1:8000/courses/' + result + '/')
                 .catch(err => {
                     if (err.response.status === 404) {
                         setCourseValues(prevState => {
@@ -344,6 +412,15 @@ const TeacherCourses = () => {
             setCodeHelper("");
         }
 
+        const colors = [
+            "#4D9DE0", "#E15554", "#E1BC29", "#3BB273", "#7768AE",
+            "#F49E4C", "#AB3428", "#F5EE9E", "#3B8EA5", "#2D728F"
+        ]
+
+        setCourseValues(prevState => {
+            return {...prevState, color: colors[Math.floor(Math.random() * colors.length)]}
+        });
+
         if (validate) {
             await axios.post('http://127.0.0.1:8000/teachers/' + teacherData.id + "/courses/", courseValues)
                 .then(r => {
@@ -357,6 +434,9 @@ const TeacherCourses = () => {
                     )
 
                     setAlerts(renderAlerts(alert));
+
+                    courses.push(r.data);
+                    renderCoursePage();
                 })
                 .catch(err => {
 
@@ -395,7 +475,7 @@ const TeacherCourses = () => {
 
     useEffect(() => {
 
-        axios.get('http://127.0.0.1:8000/users/' + userData.id)
+        axios.get('http://127.0.0.1:8000/users/' + userData.id + '/')
             .then(r => {
                 userData = r.data;
                 window.sessionStorage.setItem("userData", JSON.stringify(userData));
@@ -403,13 +483,11 @@ const TeacherCourses = () => {
             console.log(err);
         })
 
-        axios.get('http://127.0.0.1:8000/teachers/' + userData.id)
+        axios.get('http://127.0.0.1:8000/teachers/' + userData.id + '/')
             .then(r => {
                 teacherData = r.data;
                 courses = teacherData.courses;
-
                 window.sessionStorage.setItem("teacherData", JSON.stringify(teacherData));
-
             }).catch(err => {
             console.log(err);
         })

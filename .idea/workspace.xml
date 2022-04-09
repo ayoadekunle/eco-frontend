@@ -5,23 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="745c17e4-6731-46c6-8c75-9037187d9c5f" name="Changes" comment="making requests to rest api">
-      <change afterPath="$PROJECT_DIR$/src/components/StudentCoursesBanner.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/StudentHomeBanner.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/TeacherCoursesBanner.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/TeacherHomeBanner.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/HomeNavBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HomeNavBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudentAccessCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudentAccessCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudentNav.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudentNav.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/StudentSignInForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudentSignInForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TeacherAccessCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TeacherAccessCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TeacherNav.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TeacherNav.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/UserData.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserData.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TeacherSignInForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TeacherSignInForm.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/EmailConfirm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/EmailConfirm.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/StudentCourses.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/StudentCourses.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/StudentHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/StudentHome.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/TeacherCourses.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/TeacherCourses.js" afterDir="false" />
@@ -96,6 +87,9 @@
       <workItem from="1648058874472" duration="22974000" />
       <workItem from="1648095028519" duration="170811000" />
       <workItem from="1648979694481" duration="10747000" />
+      <workItem from="1648999533680" duration="20854000" />
+      <workItem from="1649362201901" duration="496000" />
+      <workItem from="1649419219813" duration="11122000" />
     </task>
     <task id="LOCAL-00001" summary="making requests to rest api">
       <created>1647372562260</created>

@@ -3,7 +3,7 @@ import {useState} from "react";
 import {makeStyles} from "@mui/styles";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
-import {setStudentData, setUserData} from "./UserData";
+import {setStudentData, setTeacherData, setUserData} from "./UserData";
 
 
 const initialUserValues = {
@@ -105,7 +105,16 @@ const StudentSignInForm = () => {
                 .then(r => {
 
                     setUserData(r.data.user);
-                    navigate("/student/dashboard");
+                    axios.get('http://127.0.0.1:8000/students/' + r.data.user.id + '/')
+                        .then(r => {
+                            setStudentData(r.data);
+                            navigate("/student/dashboard");
+                        })
+                        .catch(err => {
+                            if (err.response) {
+                                console.log(err.response.data);
+                            }
+                        });
 
                 })
                 .catch(err => {

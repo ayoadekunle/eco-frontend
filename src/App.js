@@ -22,7 +22,7 @@ const theme = createTheme({
         },
     },
     typography: {
-        fontFamily: `"Spartan", sans-serif`,
+        fontFamily: `"Raleway", sans-serif`,
         button: {
             "&.nav-button": {
                 fontFamily: `"Red Hat Text", serif`,

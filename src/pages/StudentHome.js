@@ -76,7 +76,7 @@ const StudentHome = () => {
     const content = renderContent();
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/users/' + userData.id)
+        axios.get('http://127.0.0.1:8000/users/' + userData.id + '/')
             .then(r => {
                 userData = r.data;
                 window.sessionStorage.setItem("userData", JSON.stringify(userData));
@@ -84,7 +84,7 @@ const StudentHome = () => {
             console.log(err);
         })
 
-        axios.get('http://127.0.0.1:8000/students/' + userData.id)
+        axios.get('http://127.0.0.1:8000/students/' + userData.id + '/')
             .then(r => {
                 studentData = r.data;
 
